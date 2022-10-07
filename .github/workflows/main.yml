@@ -27,6 +27,11 @@ jobs:
           pushd src/llvm-project
           git apply ../../0001-clang-WebAssembly-Pass-Wa-no-type-check-through-to-t.patch
           popd
+      - name: patch-wasi-libc
+        run: |
+          pushd src/wasi-libc
+          git apply ../../dlmalloc.diff
+          popd
       - name: Install ninja (macOS)
         run: brew install ninja
         if: matrix.os == 'macos-latest'
